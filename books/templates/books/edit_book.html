@@ -1,0 +1,13 @@
+{% extends "main.html"%}
+{% block title %}Edit book{% endblock title %}
+{% block content %}
+
+<h2> Edit book : {{book.title}} </h2>
+<form method ="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type ="submit">Edit Book</button>
+    <a href="/">Cancel</a>
+</form>
+
+{% endblock content %}

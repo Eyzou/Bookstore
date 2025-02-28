@@ -1,0 +1,28 @@
+{% extends "main.html"%}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+{%if book_list %}
+
+    <div class="list-group">
+    {% for book in book_list %}
+        <div href="#" class="list-group-item list-group-item-action" aria-current="true">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{book.title}}</h5>
+            <small>{{book.pub_date}}</small>
+            {% if user.is_authenticated %}
+            <a href="{% url 'books:deleteBook' book.id %}" class="btn btn-danger btn-sm">
+              <i class="fas fa-trash-alt"></i> Supprimer
+            </a>
+            <a href="{% url 'books:editBook' book.id %}" class="btn btn-primary btn-sm">
+              <i class="fas fa-edit"></i> Editer
+            </a>
+            {% endif %}
+          </div>
+          <p class="mb-1">{{book.synopsis}}</p>
+          <small> Written by {{book.author.name}}</small>
+        </div>
+    {%endfor %}
+            </div>
+{% endif %}
+{% endblock content %}
